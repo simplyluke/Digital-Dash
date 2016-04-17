@@ -1,5 +1,7 @@
-json.labels @stocks.collect {|s| s.created_at}
-json.datasets do 
+dates = @stocks.collect {|s| s.created_at.strftime('%H:%M %b%d')}
+
+json.labels dates
+json.datasets(['']) do |hack|
   json.label "Stock Bid Price"
   json.fillColor "rgba(220,220,220,0.2)"
   json.strokeColor "rgba(220,220,220,1)"
@@ -7,5 +9,6 @@ json.datasets do
   json.pointStrokeColor "#fff"
   json.pointHighlightFill "#fff"
   json.pointHighlightStroke "rgba(220,220,220,1)"
-  json.data @stocks.collect {|s| s.bid}
+  stocks = @stocks.collect {|s| (s.bid )} 
+  json.data stocks
 end

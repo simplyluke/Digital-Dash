@@ -1,0 +1,14 @@
+<canvas id="myChart" width="400" height="400"></canvas>
+<script>
+
+
+  $.getJSON('/chart.json', function(data) {
+    console.log(data);
+    var options = {};
+    var ctx = document.getElementById("myChart").getContext("2d");
+    var myLineChart = new Chart(ctx).Line(data, {responsive: true,
+      bezierCurve : false
+     });
+  });
+
+</script>
