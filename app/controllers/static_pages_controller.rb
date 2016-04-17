@@ -5,10 +5,10 @@ class StaticPagesController < ApplicationController
   end
 
   def chart
-    @stocks = Stock.where("created_at >= ?", Time.zone.now.beginning_of_day)
+    @stocks = Stock.where("created_at >= ?", Date.today.beginning_of_day)
     respond_to do |format|
       format.html
-      format.json {render json:@stocks}
+      format.json
     end
   end
 end
