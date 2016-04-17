@@ -25,7 +25,6 @@
 
 </script>
 
-<body>	
 	<!-- <h1>Home page</h1> -->
 
 	<div class="container-fluid test"> 
@@ -50,10 +49,8 @@
 			    </div>
 			    <div class="row-fluid">
 			    	<div class="col-md-12 test"> <!-- stocks -->
-			    		Name: <%= @stock.name %> <br>
-		  				Bid: <%= @stock.bid %> <br>
-		  				Ask: <%= @stock.ask %> <br>
-		 				Time: <%= @stock.created_at %>
+							<canvas id="myChart" width="400" height="100"></canvas>
+
 			    	</div> 
 			    </div>
 		    </div> <!-- END left side --> 
@@ -88,4 +85,16 @@
 
 	</div> <!-- end container-fluid*/ -->
 
-</body>
+<script>
+
+
+  $.getJSON('/chart.json', function(data) {
+    console.log(data);
+    var options = {};
+    var ctx = document.getElementById("myChart").getContext("2d");
+    var myLineChart = new Chart(ctx).Line(data, {responsive: true,
+      bezierCurve : false
+     });
+  });
+
+</script>
