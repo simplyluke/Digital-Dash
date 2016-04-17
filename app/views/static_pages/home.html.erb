@@ -70,7 +70,7 @@
 		    </div> <!-- END left side --> 
 		    <div class="col-md-5 test"> <!-- right side -->
 		    	<div class="row-fluid"> 
-			    			<div class="col-md-12 test"> <!-- news -->
+			    			<div class="col-md-12 test headlines"> <!-- news -->
 			    				<h3>Headlines</h3>
 			    				<ul>
 			    				<% @headlines['results'].each do |r| %>
@@ -92,18 +92,18 @@
 				    				</div>
 			    				</div>
 			    				<div class="col-md-8">
-			    					<div class="col-md-6 icon">
+			    					<div class="col-md-5 icon">
 			    						<canvas id="icon1" width="128" height="128"></canvas>
 			    					</div>
-			    					<div class="col-md-6 highLow">
-			    						<br>High today: 
+			    					<div class="col-md-7 highLow">
+			    						High of 
 			    						<%= @weather["daily"]["data"][0]["temperatureMax"].round %>&deg;
 			    						<br>
-			    						Low today: 
+			    						Low of 
 			    						<%= @weather["daily"]["data"][0]["temperatureMin"].round %>&deg;
 			    						<br>
-			    						Chance of rain:
 			    						<%= @weather["daily"]["data"][0]["precipProbability"].round %>%
+			    						chance of rain
 			    					</div>
 			    				</div>
 			    			</div>
