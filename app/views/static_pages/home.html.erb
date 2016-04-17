@@ -1,22 +1,25 @@
 <script>
 	function updateDT() {
 		var now = new Date();
-		time = now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds();
+		var milliseconds = now.getMilliseconds().toString().slice(0, 2);
+		if (milliseconds.length < 2) { 
+			milliseconds = '0' + milliseconds;
+			}
+		time = now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds() + milliseconds;
 		var dd = now.getDate();
-		var mm = now.getMonth()+1; //January is 0!
+		var monthNames = ["January", "February", "March", "April", "May", "June",
+  		"July", "August", "September", "October", "November", "December"];
 		var yyyy = now.getFullYear();
+		var mm = monthNames[now.getMonth()];
 		if(dd<10) {
 		    dd='0'+dd
 		} 
-		if(mm<10) {
-		    mm='0'+mm
-		} 
-		date = mm + ' ' + dd + ' ' + yyyy;
+		date = dd + ' ' + mm + ' ' + yyyy;
  
 		document.getElementById('time').innerHTML = time;
 		document.getElementById('date').innerHTML = date;
 	}
-	setInterval(updateDT, 1000);
+	setInterval(updateDT, 100);
 	
 	
 
