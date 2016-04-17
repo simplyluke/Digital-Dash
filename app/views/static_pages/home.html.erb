@@ -2,10 +2,23 @@
 	function updateDT() {
 		var now = new Date();
 		var milliseconds = now.getMilliseconds().toString().slice(0, 2);
-		if (milliseconds.length < 2) { 
-			milliseconds = '0' + milliseconds;
+		if(milliseconds.length < 2) { 
+			milliseconds = '0'+milliseconds;
 			}
-		time = now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds() + ':' + milliseconds;
+		var seconds = now.getSeconds().toString();
+		if(seconds.length < 2) {
+			seconds = '0'+seconds;
+		}
+		var minutes = now.getMinutes().toString();
+		if(minutes.length < 2) {
+			minutes = '0'+minutes;
+		}
+		var hours = now.getHours().toString();
+		if(hours.length < 2) {
+			hours = '0'+hours;
+		}
+		time =  hours + ':' + minutes + ':' + seconds + ':' + milliseconds;
+
 		var dd = now.getDate();
 		var monthNames = ["January", "February", "March", "April", "May", "June",
   		"July", "August", "September", "October", "November", "December"];
@@ -49,6 +62,7 @@
 			    </div>
 			    <div class="row-fluid">
 			    	<div class="col-md-12 test"> <!-- stocks -->
+			    		<h3>S&amp;P 500 (^GSPC)</h3>
 							<canvas id="myChart" width="400" height="100"></canvas>
 
 			    	</div> 
@@ -57,12 +71,41 @@
 		    <div class="col-md-5 test"> <!-- right side -->
 		    	<div class="row-fluid"> 
 			    			<div class="col-md-12 test"> <!-- news -->
-			    				news
+			    				<h3>Headlines</h3>
+			    				<ul>
+			    				<% @headlines['results'].each do |r| %>
+			    					<li><%= r['title'] %></li>
+			    				<% end %>
+			    				</ul>
 			    			</div>
 			    </div>
 			    <div class="row-fluid"> 
-			    			<div class="col-md-12 test"> <!-- weather -->
-			    				weather
+			    			<div class="col-md-12 test weather"> <!-- weather -->
+			    				<!--<h3>Current Weather</h3>-->
+			    				<div class="col-md-4">
+			    					
+				    				<span class="temperature"><%= @weather["currently"]["temperature"].round %>&deg;</span>
+				    				<div>
+				    					<span class="summary">
+				    						<%= @weather["currently"]["summary"] %>
+				    					</span>
+				    				</div>
+			    				</div>
+			    				<div class="col-md-8">
+			    					<div class="col-md-6 icon">
+			    						<canvas id="icon1" width="128" height="128"></canvas>
+			    					</div>
+			    					<div class="col-md-6 highLow">
+			    						<br>High today: 
+			    						<%= @weather["daily"]["data"][0]["temperatureMax"].round %>&deg;
+			    						<br>
+			    						Low today: 
+			    						<%= @weather["daily"]["data"][0]["temperatureMin"].round %>&deg;
+			    						<br>
+			    						Chance of rain:
+			    						<%= @weather["daily"]["data"][0]["precipProbability"].round %>%
+			    					</div>
+			    				</div>
 			    			</div>
 			    </div>
 			    <div class="row-fluid"> 
@@ -96,5 +139,14 @@
       bezierCurve : false
      });
   });
+
+  $(document).ready(function() {
+		var skycons = new Skycons({"color": "#333"});
+		var icon = '<%= @weather["currently"]["icon"]%>';
+		var icon = icon.toUpperCase().replace('-', "_");
+	  skycons.add("icon1", Skycons[icon]);
+		skycons.play();
+  });
+
 
 </script>
