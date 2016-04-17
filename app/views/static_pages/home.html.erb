@@ -1,3 +1,27 @@
+<script>
+	function updateDT() {
+		var now = new Date();
+		time = now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds();
+		var dd = now.getDate();
+		var mm = now.getMonth()+1; //January is 0!
+		var yyyy = now.getFullYear();
+		if(dd<10) {
+		    dd='0'+dd
+		} 
+		if(mm<10) {
+		    mm='0'+mm
+		} 
+		date = mm + ' ' + dd + ' ' + yyyy;
+ 
+		document.getElementById('time').innerHTML = time;
+		document.getElementById('date').innerHTML = date;
+	}
+	setInterval(updateDT, 1000);
+	
+	
+
+</script>
+
 <body>	
 	<!-- <h1>Home page</h1> -->
 
@@ -42,12 +66,12 @@
 			    			</div>
 			    </div>
 			    <div class="row-fluid"> 
-			    			<div class="col-md-12 test"> <!-- date -->
+			    			<div class="col-md-12 test" id="date"> <!-- date -->
 			    				date
 			    			</div>
 			    </div>
 			    <div class="row-fluid"> 
-			    			<div class="col-md-12 test"> <!-- time -->
+			    			<div class="col-md-12 test" id="time"> <!-- time -->
 			    				time
 			    			</div>
 			    </div>
