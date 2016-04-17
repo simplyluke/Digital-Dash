@@ -45,7 +45,10 @@
 		    <div class="col-md-7 test"> <!-- left side -->
 		    	<div class="row-fluid">
 			    	<div class="col-md-6 test"> <!-- trello -->
-			    		trello
+			    		<h3>Tasks</h3>
+			    		<ul id="tasks">
+			    			
+			    		</ul>
 			    	</div> 
 			    	<div class="col-md-6 test"> <!-- google stuff -->
 			    		<div class="row-fluid"> 
@@ -288,5 +291,14 @@
 		skycons.play();
   });
 
+
+</script>
+<script>
+	$.getJSON('https://api.trello.com/1/lists/5267113415d2dd1b6f002135?fields=name&cards=open&card_fields=name&key=1e39295586f10c0680ce216b4f4e58f4&token=15dbc719849f596297da812933fb3cacdcd58e29eb45426ee25bacd9bab7c31a', function(data) {
+		$.each( data.cards, function() {
+			console.log($(this));
+			$('#tasks').append('<li>' + $(this)[0].name + '</li>');
+		});
+	});
 
 </script>
