@@ -1,5 +1,16 @@
 dates = @stocks.collect {|s| s.created_at.strftime('%H:%M %b%d')}
 
+
+
+dates.map!.with_index { |item, index|
+  unless index % 10 ==0
+    item = ""
+  else
+    item = item
+  end
+  
+}
+
 json.labels dates
 json.datasets(['']) do |hack|
   json.label "Stock Bid Price"

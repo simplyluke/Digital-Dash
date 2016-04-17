@@ -7,6 +7,7 @@ class StaticPagesController < ApplicationController
 
   def chart
     @stocks = Stock.where("created_at >= ?", Date.today.beginning_of_day)
+    # @stocks = Stock.all
     respond_to do |format|
       format.html
       format.json
