@@ -1,28 +1,5 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+DigitalDash is a web page that uses APIs to display information about the weather, news, stocks, as well as a Trello board of your choosing, several emails (Gmail), and events on your Google calendar (for the current day); all data is kept up to date. The 'Authorize' button to the lower left allows users to log in to Google so they can see their own emails and calendar events.  DigitalDash was made at HackDFW in Dallas, Texas.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.
